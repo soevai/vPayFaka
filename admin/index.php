@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * @Author      发光的神 (VoxShadow)
  * @Version     1.0.0
@@ -2017,6 +2017,7 @@ $csrfToken = generateCSRFToken();
 
         let skuCardsCache = {};
         let currentEditingSku = '';
+        let loadCardsRequestId = 0;
 
         document.getElementById('addCardsSku').addEventListener('change', function() {
             const newSku = this.value;
@@ -2075,6 +2076,8 @@ $csrfToken = generateCSRFToken();
                 return;
             }
 
+            const requestId = ++loadCardsRequestId;
+
             let url = `../api.php?action=getCards&productId=${productId}`;
             if (sku) {
                 url += `&sku=${encodeURIComponent(sku)}`;
@@ -2083,6 +2086,9 @@ $csrfToken = generateCSRFToken();
             fetch(url)
                 .then(r => r.json())
                 .then(d => {
+                    if (requestId !== loadCardsRequestId) return;
+                    if (currentEditingSku !== sku) return;
+
                     if (d.code === 1 && d.data && d.data.length > 0) {
                         const cards = d.data.map(card => card.card_code).join('\n');
                         document.getElementById('addCardsText').value = cards;
@@ -2095,6 +2101,8 @@ $csrfToken = generateCSRFToken();
                     }
                 })
                 .catch(() => {
+                    if (requestId !== loadCardsRequestId) return;
+                    if (currentEditingSku !== sku) return;
                     document.getElementById('addCardsText').value = '';
                 });
         }
