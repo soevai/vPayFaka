@@ -86,7 +86,7 @@ cp .env.example .env
 
 ### 5. 对接支付
 
-部署 [V免签](https://github.com/szvone/Vmq) 监控端，然后在后台填上 V免签地址和通讯密钥。邮件通知可选配（SMTP 或自定义 API）。
+部署 [V免签](https://github.com/soevai/vmq) 监控端，然后在后台填上 V免签地址和通讯密钥。邮件通知可选配（SMTP 或自定义 API）。
 
 ## 项目结构
 
