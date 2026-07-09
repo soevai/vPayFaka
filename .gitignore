@@ -1,0 +1,29 @@
+# 环境配置
+.env
+
+# 安装锁文件（防止误提交导致重装保护失效）
+data/installed.lock
+
+# 敏感数据目录
+data/login_attempts.txt
+
+# 临时文件
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 上传目录（如有）
+uploads/

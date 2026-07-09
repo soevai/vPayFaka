@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单完成通知</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 30px auto;
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            background: #ff7700;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 24px;
+            color: #eee;
+        }
+
+        .item {
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .item:last-child {
+            border-bottom: 0;
+        }
+
+        .label {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 4px;
+        }
+
+        .value {
+            font-size: 15px;
+            color: #fff;
+        }
+
+        .price {
+            font-size: 20px;
+            color: #ff7700;
+            font-weight: bold;
+        }
+
+        .status {
+            color: #4ade80;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: #181818;
+            padding: 16px;
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>订单支付成功</h2>
+        </div>
+        <div class="content">
+            <div class="item">
+                <div class="label">订单编号</div>
+                <div class="value">{{orderId}}</div>
+            </div>
+            <div class="item">
+                <div class="label">商品名称</div>
+                <div class="value">{{product_name}}</div>
+            </div>
+            <div class="item">
+                <div class="label">购买数量</div>
+                <div class="value">{{quantity}}</div>
+            </div>
+            <div class="item">
+                <div class="label">支付金额</div>
+                <div class="value price">¥{{reallyPrice}}</div>
+            </div>
+            <div class="item">
+                <div class="label">支付状态</div>
+                <div class="value status">已完成</div>
+            </div>
+            <div class="item">
+                <div class="label">下单时间</div>
+                <div class="value">{{created_at}}</div>
+            </div>
+            <div class="item">
+                <div class="label">用户账号</div>
+                <div class="value">{{account}}</div>
+            </div>
+        </div>
+        <div class="footer">
+            感谢您的购买，如有问题请联系客服
+        </div>
+    </div>
+</body>
+
+</html>
