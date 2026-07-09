@@ -332,7 +332,8 @@ switch ($action) {
         $total = getCardsCountByProductId($productId, false, $sku);
         $pages = $page > 0 ? ceil($total / $pageSize) : 1;
 
-        $cards = getCardsByProductId($productId, $page, $pageSize, false, $sku);
+        $effectivePageSize = $page > 0 ? $pageSize : 0;
+        $cards = getCardsByProductId($productId, $page, $effectivePageSize, false, $sku);
 
         echo json_encode([
             'code' => 1,
