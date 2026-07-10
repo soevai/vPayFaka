@@ -1010,9 +1010,10 @@ function checkPurchaseLimit($ip, $productId = null, $timeWindow = 3600, $maxOrde
     $pdo = getDB();
 
     $stmt = $pdo->prepare("
-        SELECT COUNT(*) FROM orders 
+        SELECT COUNT(*) FROM orders
         WHERE created_at > DATE_SUB(NOW(), INTERVAL ? SECOND)
         AND ip = ?
+        AND status = 'completed'
     ");
     $stmt->execute([$timeWindow, $ip]);
     $count = $stmt->fetchColumn();
@@ -1023,10 +1024,11 @@ function checkPurchaseLimit($ip, $productId = null, $timeWindow = 3600, $maxOrde
 
     if ($productId) {
         $stmt = $pdo->prepare("
-            SELECT COUNT(*) FROM orders 
+            SELECT COUNT(*) FROM orders
             WHERE created_at > DATE_SUB(NOW(), INTERVAL ? SECOND)
             AND ip = ?
             AND product_id = ?
+            AND status = 'completed'
         ");
         $stmt->execute([$timeWindow, $ip, $productId]);
         $productCount = $stmt->fetchColumn();
